@@ -6,9 +6,9 @@ interface HeaderItemProps {
 
 const HeaderItem: FC<HeaderItemProps> = ({ title }) => {
   return (
-    <p className="mx-2 text-xl font-medium hover:text-green-500">
-      <span className="text-green-500">cd</span> ./{title}
-    </p>
+    <div className="flex mr-1 text-xs font-medium md:mx-2 md:text-xl hover:text-green-500">
+      <p className="text-green-500 mr-0.5">cd </p> <p>./{title}</p>
+    </div>
   )
 }
 
