@@ -10,11 +10,11 @@ const Introduction = () => {
         <Typist cursor={{ show: false }}>
           <Typist.Delay ms={1000} />
           <p className="mt-1 text-lg md:text-4xl">I am</p>
-          <p className="mt-1 text-xl md:text-7xl">Chandrakant Pal</p>
+          <p className="mt-1 text-xl md:text-6xl">Chandrakant Pal</p>
         </Typist>
         <Typist cursor={{ show: false }}>
           <Typist.Delay ms={2500} />
-          <p className="mt-1 text-xl md:text-7xl">I build things on the web.</p>
+          <p className="mt-1 text-xl md:text-6xl">I build things on the web.</p>
         </Typist>
       </div>
     </section>
