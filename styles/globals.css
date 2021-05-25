@@ -8,17 +8,3 @@
         @apply bg-black text-white font-body
     }
 }
-
-.typing p{
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
-    white-space:nowrap;
-    overflow:hidden;
-    animation:typing 4s steps(22,end) forwards;
-  }
-  @keyframes typing {
-    0% { width:0% }
-    100% { width:100% }
-  }
