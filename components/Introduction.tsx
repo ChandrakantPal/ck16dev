@@ -15,6 +15,12 @@ const Introduction = () => {
         <Typist cursor={{ show: false }}>
           <Typist.Delay ms={2500} />
           <p className="mt-1 text-xl md:text-6xl">I build things on the web.</p>
+          <p className="mt-2 text-xl">
+            I am software engineer based out Goa, India. <br /> Tech enthusiast,
+            constantly learning some new tech out there.
+            <br /> History buff,
+            <br /> Movie buff.
+          </p>
         </Typist>
       </div>
     </section>
