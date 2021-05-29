@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const Introduction = () => {
   return (
-    <section className="flex flex-col items-center justify-center mt-14">
+    <section className="flex flex-col items-center justify-center h-screen">
       <div className="px-20 py-20 text-left">
         <Typist cursor={{ show: false }}>
           <p className="mt-1 text-lg md:text-4xl">Hi,</p>
