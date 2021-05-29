@@ -6,15 +6,25 @@ const Header = ({ toggle, setToggle }) => {
   const headerRef = useRef<HTMLHeadElement>(null)
   useEffect(() => {
     // const sticky = headerRef.current
+    let lastScrollTop = 0
     const scrollCallBack: any = window.addEventListener('scroll', () => {
       // console.log(window.screenY - window.pageYOffset)
-      if (window.pageYOffset > 0) {
-        headerRef.current.classList.add('sticky')
-        headerRef.current.classList.add('top-0')
-      } else {
+      let st = window.pageYOffset || document.documentElement.scrollTop
+      if (st > lastScrollTop) {
+        // scroll down
         headerRef.current.classList.remove('sticky')
         headerRef.current.classList.remove('top-0')
+      } else {
+        // scroll up
+        headerRef.current.classList.add('sticky')
+        headerRef.current.classList.add('top-0')
       }
+      lastScrollTop = st <= 0 ? 0 : st
+      console.log(
+        { st, lastScrollTop },
+        window.pageYOffset,
+        document.documentElement.scrollTop
+      )
     })
     return () => {
       window.removeEventListener('scroll', scrollCallBack)
