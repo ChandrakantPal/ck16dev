@@ -1,17 +1,46 @@
+import { useEffect, useRef } from 'react'
 import HeaderItem from './HeaderItem'
 import Logo from './Logo'
 
-const Header = () => {
+const Header = ({ toggle, setToggle }) => {
+  const headerRef = useRef<HTMLHeadElement>(null)
+  useEffect(() => {
+    // const sticky = headerRef.current
+    const scrollCallBack: any = window.addEventListener('scroll', () => {
+      // console.log(window.screenY - window.pageYOffset)
+      if (window.pageYOffset > 0) {
+        headerRef.current.classList.add('sticky')
+        headerRef.current.classList.add('top-0')
+      } else {
+        headerRef.current.classList.remove('sticky')
+        headerRef.current.classList.remove('top-0')
+      }
+    })
+    return () => {
+      window.removeEventListener('scroll', scrollCallBack)
+    }
+  }, [])
   return (
-    <header className="fixed top-0 left-0 right-0 z-10 flex flex-col flex-wrap items-start h-auto p-4 md:justify-between sm:flex-row sm:justify-center">
-      <Logo />
-      <div className="w-full my-4 border-t border-dashed md:hidden" />
-      <div className="flex items-center justify-center my-2 md:m-0">
-        <HeaderItem title="about" />
-        <HeaderItem title="skills" />
-        <HeaderItem title="work" />
-        <HeaderItem title="contact" />
-      </div>
+    <header
+      ref={headerRef}
+      className="z-50 w-full h-20 p-4 bg-black border-b border-gray-700"
+    >
+      <nav className="flex flex-wrap items-center justify-between h-full">
+        <Logo />
+        {/* <div className="w-full my-4 border-t border-dashed md:hidden" /> */}
+        <div className="items-center justify-center hidden my-2 md:flex md:m-0">
+          <HeaderItem title="about" />
+          <HeaderItem title="skills" />
+          <HeaderItem title="work" />
+          <HeaderItem title="contact" />
+        </div>
+        <button
+          className="px-4 py-2 text-lg text-center border border-white rounded-lg w-14 focus:outline-none md:hidden focus:border-green-700"
+          onClick={() => setToggle((prevState) => !prevState)}
+        >
+          {toggle ? <span>x</span> : <span>{'>'}_</span>}
+        </button>
+      </nav>
     </header>
   )
 }
