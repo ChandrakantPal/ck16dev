@@ -12,19 +12,16 @@ const Header = ({ toggle, setToggle }) => {
       let st = window.pageYOffset || document.documentElement.scrollTop
       if (st > lastScrollTop) {
         // scroll down
+        headerRef.current.classList.remove('animate-slide')
         headerRef.current.classList.remove('sticky')
         headerRef.current.classList.remove('top-0')
       } else {
         // scroll up
+        headerRef.current.classList.add('animate-slide')
         headerRef.current.classList.add('sticky')
         headerRef.current.classList.add('top-0')
       }
       lastScrollTop = st <= 0 ? 0 : st
-      console.log(
-        { st, lastScrollTop },
-        window.pageYOffset,
-        document.documentElement.scrollTop
-      )
     })
     return () => {
       window.removeEventListener('scroll', scrollCallBack)
@@ -33,11 +30,10 @@ const Header = ({ toggle, setToggle }) => {
   return (
     <header
       ref={headerRef}
-      className="z-50 w-full h-20 p-4 bg-black border-b border-gray-700"
+      className="z-50 w-full h-20 p-4 bg-black border-b border-gray-700 bg-opacity-80"
     >
       <nav className="flex flex-wrap items-center justify-between h-full">
         <Logo />
-        {/* <div className="w-full my-4 border-t border-dashed md:hidden" /> */}
         <div className="items-center justify-center hidden my-2 md:flex md:m-0">
           <HeaderItem title="about" />
           <HeaderItem title="skills" />
