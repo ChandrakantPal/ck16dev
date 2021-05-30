@@ -30,7 +30,7 @@ const Header = ({ toggle, setToggle }) => {
   return (
     <header
       ref={headerRef}
-      className="z-50 w-full h-20 p-4 bg-black border-b border-gray-700 bg-opacity-80"
+      className="z-50 w-full h-20 p-4 bg-[#0d1117] shadow-2xl bg-opacity-80"
     >
       <nav className="flex flex-wrap items-center justify-between h-full">
         <Logo />
