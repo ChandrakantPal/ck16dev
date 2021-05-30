@@ -4,7 +4,7 @@ const SideDrawer = ({ setToggle }) => {
   return (
     <>
       <nav className="fixed right-0 z-20 w-40 h-screen md:hidden">
-        <div className="flex flex-col items-center justify-around w-full h-full py-20 ml-auto bg-black border-l border-gray-900 shadow-inner">
+        <div className="flex flex-col items-center justify-around w-full h-full py-20 ml-auto bg-[#0d1117] border-l border-gray-900 shadow-inner">
           <HeaderItem title="about" />
           <HeaderItem title="skills" />
           <HeaderItem title="work" />
