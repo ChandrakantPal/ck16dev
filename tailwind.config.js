@@ -1,5 +1,5 @@
 module.exports = {
-  // mode: 'jit',
+  mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -8,7 +8,7 @@ module.exports = {
         body: ['Roboto Mono'],
       },
       animation: {
-        slide: 'slide 1s',
+        slide: 'slide 0.3s',
       },
       keyframes: {
         slide: {
