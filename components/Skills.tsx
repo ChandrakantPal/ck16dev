@@ -1,25 +1,32 @@
+import Skill from './Skill'
+
 const Skills = () => {
   return (
     <section className="w-full h-screen">
-      <h1 className="text-2xl text-left md:text-4xl">./skills</h1>
-      <hr className="my-2 border-green-700" />
-      <section className="w-full mx-auto md:w-1/2">
-        <p className="py-10 text-2xl text-left text-gray-500">
-          ReactJS '['****************....']'and learning
-        </p>
-        <p className="py-10 text-2xl text-left text-gray-500">
-          NextJS '['****************....']'and learning
-        </p>
-        <p className="py-10 text-2xl text-left text-gray-500">
-          Typescript '['****************....']'and learning
-        </p>
-        <p className="py-10 text-2xl text-left text-gray-500">
-          NodeJS '['****************....']'and learning
-        </p>
-        <p className="py-10 text-2xl text-left text-gray-500">
-          PostgreSQL '['**********..........']'and learning
-        </p>
-      </section>
+      <h1 className="text-2xl text-left text-green-700 md:text-4xl">
+        ./skills
+      </h1>
+      <hr className="my-2 border-gray-500" />
+      <div className="px-10 my-10">
+        <Skill title="ReactJS" url="/images/logos/react.png" proficiency={8} />
+        <Skill title="NextJS" url="/images/logos/next.png" proficiency={8} />
+        <Skill
+          title="Typescript"
+          url="/images/logos/typescript.png"
+          proficiency={8}
+        />
+        <Skill title="NodeJS" url="/images/logos/node.png" proficiency={8} />
+        <Skill
+          title="GraphQL"
+          url="/images/logos/graphql.png"
+          proficiency={5}
+        />
+        <Skill
+          title="PostgreSQL"
+          url="/images/logos/postgresql.png"
+          proficiency={5}
+        />
+      </div>
     </section>
   )
 }
