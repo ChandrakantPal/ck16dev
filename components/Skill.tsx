@@ -10,7 +10,7 @@ const Skill: FC<SkillProp> = ({ title, url, proficiency }) => {
   const rating = `${'**'.repeat(proficiency)}${'..'.repeat(10 - proficiency)}`
   return (
     <>
-      <div className="flex flex-wrap items-start w-full mb-7 md:my-16 md:justify-between">
+      <div className="flex flex-wrap items-start w-full mb-7 md:my-16 md:justify-around">
         <div className="flex items-center">
           <div className="w-12 h-12 mr-2 md:w-16 md:h-16">
             <img
