@@ -30,11 +30,11 @@ const Header = ({ toggle, setToggle }) => {
   return (
     <header
       ref={headerRef}
-      className="z-50 w-full h-20 p-4 shadow-2xl bg-bunker bg-opacity-80"
+      className="z-50 w-full p-4 shadow-2xl bg-bunker bg-opacity-80"
     >
-      <nav className="flex flex-wrap items-center justify-between h-full">
+      <nav className="flex items-center justify-between">
         <Logo />
-        <div className="items-center justify-center hidden my-2 md:flex md:m-0">
+        <div className="items-center justify-center flex-grow-0 hidden my-2 md:flex md:m-0">
           <HeaderItem title="about" />
           <HeaderItem title="skills" />
           <HeaderItem title="work" />
