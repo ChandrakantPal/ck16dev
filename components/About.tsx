@@ -1,8 +1,9 @@
+import SectionHeader from './SectionHeader'
+
 const About = () => {
   return (
-    <section className="w-full h-screen">
-      <h1 className="text-2xl text-left md:text-4xl">./about</h1>
-      <hr className="my-2 border-green-700" />
+    <section className="w-full h-200">
+      <SectionHeader title="about" />
       <div className="flex flex-wrap-reverse items-start justify-center mt-10 md:flex-nowrap">
         <div className="w-full mx-10 my-5 md:px-20 md:w-1/2">
           <p className="text-gray-500 md:text-2xl">
