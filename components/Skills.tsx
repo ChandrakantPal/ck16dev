@@ -1,12 +1,10 @@
+import SectionHeader from './SectionHeader'
 import Skill from './Skill'
 
 const Skills = () => {
   return (
-    <section className="w-full h-screen">
-      <h1 className="text-2xl text-left text-green-700 md:text-4xl">
-        ./skills
-      </h1>
-      <hr className="my-2 border-gray-500" />
+    <section className="w-full h-200">
+      <SectionHeader title="skills" />
       <div className="px-10 my-10">
         <Skill title="ReactJS" url="/images/logos/react.png" proficiency={8} />
         <Skill title="NextJS" url="/images/logos/next.png" proficiency={8} />
