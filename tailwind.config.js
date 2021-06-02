@@ -20,6 +20,9 @@ module.exports = {
           },
         },
       },
+      spacing: {
+        200: '60rem',
+      },
       colors: {
         bunker: {
           DEFAULT: '#0D1117',
