@@ -13,9 +13,16 @@ const Project: FC<ProjectProp> = ({ link, title, stack }) => {
       className="flex flex-col items-center justify-center w-full rounded-lg"
       target="_blank"
     >
-      <img src="/images/logos/project.png" className="object-contain w-40" />
-      <p className="mt-2 text-left text-gray-500">Title - {title}</p>
-      <p className="mt-2 text-left text-gray-500">Stack - {stack}</p>
+      <img
+        src="/images/logos/project.png"
+        className="object-contain w-32 md:w-40"
+      />
+      <p className="w-2/3 mt-2 text-sm text-center text-gray-500">
+        Title - {title}
+      </p>
+      <p className="w-2/3 mt-2 text-sm text-center text-gray-500">
+        Stack - {stack}
+      </p>
     </a>
   )
 }
