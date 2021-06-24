@@ -3,7 +3,7 @@ import SectionHeader from './SectionHeader'
 
 const Work = () => {
   return (
-    <section className="w-full h-full">
+    <section className="w-full h-full md:h-200">
       <SectionHeader title="work" />
       <div className="flex flex-wrap grid-cols-3 grid-rows-2 gap-10 mt-10 md:grid">
         <Project
