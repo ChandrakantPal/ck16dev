@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import aos from 'aos'
 import About from '../components/About'
 import Contact from '../components/Contact'
 import Header from '../components/Header'
@@ -10,6 +11,12 @@ import Work from '../components/Work'
 
 export default function Home() {
   const [menuToggle, setMenuToggle] = useState(false)
+  useEffect(() => {
+    aos.init({
+      offset: 400,
+      duration: 1000,
+    })
+  }, [])
   return (
     <div>
       <Head>
