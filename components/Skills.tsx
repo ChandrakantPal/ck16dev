@@ -3,7 +3,7 @@ import Skill from './Skill'
 
 const Skills = () => {
   return (
-    <section className="w-full h-200">
+    <section data-aos="fade-up" className="w-full h-200">
       <SectionHeader title="skills" />
       <div className="px-10 my-10">
         <Skill title="ReactJS" url="/images/logos/react.png" proficiency={8} />
