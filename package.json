@@ -15,6 +15,7 @@
     "react-typist": "^2.0.5"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.4",
     "@types/react": "^17.0.6",
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.15",
