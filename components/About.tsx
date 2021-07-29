@@ -2,7 +2,7 @@ import SectionHeader from './SectionHeader'
 
 const About = () => {
   return (
-    <section className="w-full h-200">
+    <section data-aos="fade-up" className="w-full h-200">
       <SectionHeader title="about" />
       <div className="flex flex-wrap-reverse items-start justify-center mt-10 md:flex-nowrap">
         <div className="w-full mx-10 my-5 md:px-20 md:w-1/2">
