@@ -1,9 +1,12 @@
+import { FC, RefObject } from 'react'
 import Typist from 'react-typist'
-import Image from 'next/image'
 
-const Introduction = () => {
+const Introduction: FC<{ heroRef: RefObject<HTMLElement> }> = ({ heroRef }) => {
   return (
-    <section className="flex flex-col items-center justify-center w-full h-200 lg:h-screen">
+    <section
+      className="flex flex-col items-center justify-center w-full h-200 lg:h-screen"
+      ref={heroRef}
+    >
       <div className="w-full h-full p-6 mt-20 text-left md:p-14 lg:p-20">
         <Typist cursor={{ show: false }}>
           <p className="mt-1 text-lg text-green-400 md:text-xl">Hi, I am</p>
