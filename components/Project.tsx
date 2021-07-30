@@ -1,4 +1,5 @@
-import { FC } from 'react'
+import Aos from 'aos'
+import { FC, useEffect } from 'react'
 
 interface ProjectProp {
   link: string
@@ -7,8 +8,12 @@ interface ProjectProp {
 }
 
 const Project: FC<ProjectProp> = ({ link, title, stack }) => {
+  useEffect(() => {
+    Aos.init()
+  }, [])
   return (
     <a
+      data-aos="fade-up"
       href={link}
       className="flex flex-col items-center justify-center w-full rounded-lg"
       target="_blank"
