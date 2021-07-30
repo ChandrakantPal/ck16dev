@@ -1,8 +1,9 @@
+import { FC, RefObject } from 'react'
 import SectionHeader from './SectionHeader'
 
-const About = () => {
+const About: FC<{ aboutRef: RefObject<HTMLElement> }> = ({ aboutRef }) => {
   return (
-    <section data-aos="fade-up" className="w-full md:mb-24">
+    <section data-aos="fade-up" className="w-full md:mb-36" ref={aboutRef}>
       <SectionHeader title="about" />
       <div className="flex flex-wrap-reverse items-start justify-center mt-10 md:flex-nowrap">
         <div className="w-full mx-10 my-5 md:px-20 md:w-1/2">
