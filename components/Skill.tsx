@@ -1,4 +1,5 @@
-import { FC } from 'react'
+import Aos from 'aos'
+import { FC, useEffect } from 'react'
 
 interface SkillProp {
   title: string
@@ -7,10 +8,16 @@ interface SkillProp {
 }
 
 const Skill: FC<SkillProp> = ({ title, url, proficiency }) => {
+  useEffect(() => {
+    Aos.init()
+  }, [])
   const rating = `${'**'.repeat(proficiency)}${'..'.repeat(10 - proficiency)}`
   return (
     <>
-      <div className="flex flex-wrap items-start w-full mb-7 md:my-16 md:justify-around">
+      <div
+        data-aos="fade-up"
+        className="flex flex-wrap items-start w-full mb-7 md:my-16 md:justify-around"
+      >
         <div className="flex items-center">
           <div className="w-12 h-12 mr-2 md:w-16 md:h-16">
             <img
