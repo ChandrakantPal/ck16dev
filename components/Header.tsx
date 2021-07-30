@@ -1,8 +1,28 @@
-import { useEffect, useRef } from 'react'
+import { FC, RefObject, useEffect, useRef } from 'react'
 import HeaderItem from './HeaderItem'
 import Logo from './Logo'
 
-const Header = ({ toggle, setToggle }) => {
+interface HeaderProps {
+  toggle: boolean
+  setToggle: (toggle: any) => void
+  scrollToRef: (ref: RefObject<HTMLElement>) => void
+  heroRef: RefObject<HTMLElement>
+  aboutRef: RefObject<HTMLElement>
+  skillsRef: RefObject<HTMLElement>
+  workRef: RefObject<HTMLElement>
+  contactRef: RefObject<HTMLElement>
+}
+
+const Header: FC<HeaderProps> = ({
+  toggle,
+  setToggle,
+  scrollToRef,
+  heroRef,
+  aboutRef,
+  skillsRef,
+  workRef,
+  contactRef,
+}) => {
   const headerRef = useRef<HTMLHeadElement>(null)
   useEffect(() => {
     // const sticky = headerRef.current
@@ -33,12 +53,22 @@ const Header = ({ toggle, setToggle }) => {
       className="z-50 w-full p-4 shadow-2xl bg-bunker bg-opacity-80"
     >
       <nav className="flex items-center justify-between">
-        <Logo />
+        <div onClick={() => scrollToRef(heroRef)}>
+          <Logo />
+        </div>
         <div className="items-center justify-center flex-grow-0 hidden my-2 md:flex md:m-0">
-          <HeaderItem title="about" />
-          <HeaderItem title="skills" />
-          <HeaderItem title="work" />
-          <HeaderItem title="contact" />
+          <div onClick={() => scrollToRef(aboutRef)}>
+            <HeaderItem title="about" />
+          </div>
+          <div onClick={() => scrollToRef(skillsRef)}>
+            <HeaderItem title="skills" />
+          </div>
+          <div onClick={() => scrollToRef(workRef)}>
+            <HeaderItem title="work" />
+          </div>
+          <div onClick={() => scrollToRef(contactRef)}>
+            <HeaderItem title="contact" />
+          </div>
         </div>
         <button
           className="px-4 py-2 text-lg text-center border border-white rounded-lg w-14 focus:outline-none md:hidden focus:border-green-700"
