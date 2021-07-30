@@ -1,9 +1,14 @@
+import Aos from 'aos'
+import { useEffect } from 'react'
 import Project from './Project'
 import SectionHeader from './SectionHeader'
 
 const Work = () => {
+  useEffect(() => {
+    Aos.init()
+  }, [])
   return (
-    <section data-aos="fade-up" className="w-full h-full md:h-200">
+    <section data-aos="fade-up" className="w-full md:mb-24">
       <SectionHeader title="work" />
       <div className="flex flex-wrap grid-cols-3 grid-rows-2 gap-10 mt-10 md:grid">
         <Project
