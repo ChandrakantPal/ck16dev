@@ -1,14 +1,10 @@
-import Aos from 'aos'
-import { useEffect } from 'react'
+import { FC, RefObject } from 'react'
 import Project from './Project'
 import SectionHeader from './SectionHeader'
 
-const Work = () => {
-  useEffect(() => {
-    Aos.init()
-  }, [])
+const Work: FC<{ workRef: RefObject<HTMLElement> }> = ({ workRef }) => {
   return (
-    <section data-aos="fade-up" className="w-full md:mb-24">
+    <section data-aos="fade-up" className="w-full md:mb-36" ref={workRef}>
       <SectionHeader title="work" />
       <div className="flex flex-wrap grid-cols-3 grid-rows-2 gap-10 mt-10 md:grid">
         <Project
