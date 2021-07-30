@@ -4,7 +4,7 @@ import Skill from './Skill'
 
 const Skills: FC<{ skillsRef: RefObject<HTMLElement> }> = ({ skillsRef }) => {
   return (
-    <section data-aos="fade-up" className="w-full md:mb-36" ref={skillsRef}>
+    <section data-aos="fade-up" className="w-full mb-36" ref={skillsRef}>
       <SectionHeader title="skills" />
       <div className="px-10 my-10">
         <Skill title="ReactJS" url="/images/logos/react.png" proficiency={8} />
