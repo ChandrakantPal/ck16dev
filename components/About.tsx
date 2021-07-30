@@ -7,8 +7,8 @@ const About: FC<{ aboutRef: RefObject<HTMLElement> }> = ({ aboutRef }) => {
       <SectionHeader title="about" />
       <div className="flex flex-wrap-reverse items-start justify-center mt-10 md:flex-nowrap">
         <div className="w-full mx-10 my-5 md:px-20 md:w-1/2">
-          <p className="text-gray-500 md:text-2xl">
-            It all started in 3rd year of college where my friend{' '}
+          <p className="text-gray-500 md:text-xl">
+            I started learning to code in 3rd year of college where my friend{' '}
             <a
               href="https://www.linkedin.com/in/gomesluis479/"
               className="text-green-700"
