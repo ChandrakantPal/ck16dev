@@ -1,8 +1,11 @@
+import { FC, RefObject } from 'react'
 import SectionHeader from './SectionHeader'
 
-const Contact = () => {
+const Contact: FC<{ contactRef: RefObject<HTMLElement> }> = ({
+  contactRef,
+}) => {
   return (
-    <section className="w-full">
+    <section className="w-full" ref={contactRef}>
       <SectionHeader title="contact" />
       <h1 className="mt-4 text-center text-gray-500 tex-xl md:text-2xl">
         Get in touch with me
