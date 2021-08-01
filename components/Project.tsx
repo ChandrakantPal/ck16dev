@@ -22,12 +22,8 @@ const Project: FC<ProjectProp> = ({ link, title, stack }) => {
         src="/images/logos/project.png"
         className="object-contain w-32 md:w-40"
       />
-      <p className="w-2/3 mt-2 text-sm text-center text-gray-500">
-        Title - {title}
-      </p>
-      <p className="w-2/3 mt-2 text-sm text-center text-gray-500">
-        Stack - {stack}
-      </p>
+      <p className="w-2/3 mt-2 text-sm text-center text-gray-500">{title}</p>
+      <p className="w-2/3 mt-2 text-sm text-center text-gray-500">{stack}</p>
     </a>
   )
 }
