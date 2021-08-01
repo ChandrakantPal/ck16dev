@@ -10,17 +10,17 @@ const Work: FC<{ workRef: RefObject<HTMLElement> }> = ({ workRef }) => {
         <Project
           link="https://helloworldtwitterclonegraphql.netlify.app/"
           title="Hello World (Twitter clone)"
-          stack="React Node MongoDB GraphQL"
+          stack="React | Node | MongoDB | GraphQL"
         />
         <Project
           link="https://contactsbookclient.netlify.app"
           title="Contacts Book"
-          stack="React TypeScript Tailwind Node MongoDB GraphQL"
+          stack="React | TypeScript | Tailwind | Node | MongoDB | GraphQL"
         />
         <Project
           link="https://workfloy-clone.netlify.app"
           title="WorkFlowy Clone"
-          stack="React TypeScript Tailwind Node MongoDB GraphQL"
+          stack="React | TypeScript | Tailwind | Node | MongoDB | GraphQL"
         />
         <Project
           link="https://netflixclonereact.netlify.app"
@@ -30,7 +30,7 @@ const Work: FC<{ workRef: RefObject<HTMLElement> }> = ({ workRef }) => {
         <Project
           link="https://hulu-clone-next-typescript-tailwind.vercel.app/"
           title="Hulu Clone"
-          stack="Next TypeScript Tailwind"
+          stack="Next | TypeScript | Tailwind"
         />
       </div>
     </section>
