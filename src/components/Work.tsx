@@ -10,6 +10,7 @@ const Work: FC<{ workRef: RefObject<HTMLElement> }> = ({ workRef }) => {
       <div className="flex flex-wrap grid-cols-3 grid-rows-2 gap-10 mt-10 md:grid">
         {Projects.map((project) => (
           <Project
+            key={project.title}
             link={project.link}
             title={project.title}
             stack={project.stack}
