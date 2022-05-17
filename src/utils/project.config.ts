@@ -1,5 +1,10 @@
 export const Projects = [
   {
+    link: 'https://airbnb-clone-next-tailwind.vercel.app/',
+    title: 'Airbnb Clone',
+    stack: 'Next | TypeScript | Tailwind',
+  },
+  {
     link: 'https://hulu-clone-next-typescript-tailwind.vercel.app/',
     title: 'Hulu Clone',
     stack: 'Next | TypeScript | Tailwind',
