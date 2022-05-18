@@ -24,8 +24,8 @@ const Introduction: FC<{ heroRef: RefObject<HTMLElement> }> = ({ heroRef }) => {
           </p>
           <div className="w-full">
             <p className="mt-8 text-lg text-gray-500 md:text-xl">
-              I am Web Developer based out of Goa, India. <br /> Tech
-              enthusiast, constantly learning some new tech out there.
+              I am Web Developer based out of India. <br /> Tech enthusiast,
+              constantly learning some new tech out there.
               <br /> History buff,
               <br /> Movie buff.
             </p>
