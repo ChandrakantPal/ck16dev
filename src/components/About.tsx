@@ -1,5 +1,5 @@
-import { FC, RefObject } from 'react'
-import SectionHeader from './SectionHeader'
+import { FC, RefObject } from "react";
+import SectionHeader from "./SectionHeader";
 
 const About: FC<{ aboutRef: RefObject<HTMLElement> }> = ({ aboutRef }) => {
   return (
@@ -12,18 +12,11 @@ const About: FC<{ aboutRef: RefObject<HTMLElement> }> = ({ aboutRef }) => {
       <div className="flex flex-wrap-reverse items-start justify-center mt-10 md:flex-nowrap">
         <div className="w-full mx-10 my-5 md:px-20 md:w-1/2">
           <p className="text-gray-500 md:text-xl">
-            I started learning to code in 3rd year of my college where my friend{' '}
-            <a
-              href="https://www.linkedin.com/in/gomesluis479/"
-              className="text-green-700"
-            >
-              {'('}Luis{')'}
-            </a>{' '}
-            introduced me to web developement, and our finial year project also
-            need us to make a web dashboard, so thats where it all began and now
-            I really enjoy builing Products. I initially started as a frontend
-            dev and now I do both frontend and backend.
+            I am a self-taught software developer mostly focused on web
+            development and web technologies in general, and building
+            user-centric products with excellent user experience.
           </p>
+          <p className="text-gray-400 md:text-xl"> Learn.Build.Repeat.</p>
         </div>
         <div className="w-full mx-24 md:mx-10 md:w-1/2">
           <img
@@ -33,7 +26,7 @@ const About: FC<{ aboutRef: RefObject<HTMLElement> }> = ({ aboutRef }) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;
