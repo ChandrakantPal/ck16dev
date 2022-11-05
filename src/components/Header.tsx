@@ -1,16 +1,16 @@
-import { FC, RefObject, useEffect, useRef } from 'react'
-import HeaderItem from './HeaderItem'
-import Logo from './Logo'
+import { FC, RefObject, useEffect, useRef } from "react";
+import HeaderItem from "./HeaderItem";
+import Logo from "./Logo";
 
 interface HeaderProps {
-  toggle: boolean
-  setToggle: (toggle: any) => void
-  scrollToRef: (ref: RefObject<HTMLElement>) => void
-  heroRef: RefObject<HTMLElement>
-  aboutRef: RefObject<HTMLElement>
-  skillsRef: RefObject<HTMLElement>
-  workRef: RefObject<HTMLElement>
-  contactRef: RefObject<HTMLElement>
+  toggle: boolean;
+  setToggle: (toggle: any) => void;
+  scrollToRef: (ref: RefObject<HTMLElement>) => void;
+  heroRef: RefObject<HTMLElement>;
+  aboutRef: RefObject<HTMLElement>;
+  skillsRef: RefObject<HTMLElement>;
+  // workRef: RefObject<HTMLElement>
+  contactRef: RefObject<HTMLElement>;
 }
 
 const Header: FC<HeaderProps> = ({
@@ -20,33 +20,33 @@ const Header: FC<HeaderProps> = ({
   heroRef,
   aboutRef,
   skillsRef,
-  workRef,
+  // workRef,
   contactRef,
 }) => {
-  const headerRef = useRef<HTMLHeadElement>(null)
+  const headerRef = useRef<HTMLHeadElement>(null);
   useEffect(() => {
     // const sticky = headerRef.current
-    let lastScrollTop = 0
-    const scrollCallBack: any = window.addEventListener('scroll', () => {
+    let lastScrollTop = 0;
+    const scrollCallBack: any = window.addEventListener("scroll", () => {
       // console.log(window.screenY - window.pageYOffset)
-      let st = window.pageYOffset || document.documentElement.scrollTop
+      let st = window.pageYOffset || document.documentElement.scrollTop;
       if (st > lastScrollTop) {
         // scroll down
-        headerRef.current.classList.remove('animate-slide')
-        headerRef.current.classList.remove('sticky')
-        headerRef.current.classList.remove('top-0')
+        headerRef.current.classList.remove("animate-slide");
+        headerRef.current.classList.remove("sticky");
+        headerRef.current.classList.remove("top-0");
       } else {
         // scroll up
-        headerRef.current.classList.add('animate-slide')
-        headerRef.current.classList.add('sticky')
-        headerRef.current.classList.add('top-0')
+        headerRef.current.classList.add("animate-slide");
+        headerRef.current.classList.add("sticky");
+        headerRef.current.classList.add("top-0");
       }
-      lastScrollTop = st <= 0 ? 0 : st
-    })
+      lastScrollTop = st <= 0 ? 0 : st;
+    });
     return () => {
-      window.removeEventListener('scroll', scrollCallBack)
-    }
-  }, [])
+      window.removeEventListener("scroll", scrollCallBack);
+    };
+  }, []);
   return (
     <header
       ref={headerRef}
@@ -63,9 +63,9 @@ const Header: FC<HeaderProps> = ({
           <div onClick={() => scrollToRef(skillsRef)}>
             <HeaderItem title="skills" />
           </div>
-          <div onClick={() => scrollToRef(workRef)}>
+          {/* <div onClick={() => scrollToRef(workRef)}>
             <HeaderItem title="work" />
-          </div>
+          </div> */}
           <div onClick={() => scrollToRef(contactRef)}>
             <HeaderItem title="contact" />
           </div>
@@ -74,11 +74,11 @@ const Header: FC<HeaderProps> = ({
           className="px-4 py-2 text-lg text-center border border-white rounded-lg w-14 focus:outline-none md:hidden focus:border-green-700"
           onClick={() => setToggle((prevState) => !prevState)}
         >
-          {toggle ? <span>x</span> : <span>{'>'}_</span>}
+          {toggle ? <span>x</span> : <span>{">"}_</span>}
         </button>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

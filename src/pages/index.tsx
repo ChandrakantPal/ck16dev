@@ -45,7 +45,7 @@ export default function Home() {
         heroRef={heroRef}
         aboutRef={aboutRef}
         skillsRef={skillsRef}
-        workRef={workRef}
+        // workRef={workRef}
         contactRef={contactRef}
       />
       {menuToggle && (
@@ -54,7 +54,7 @@ export default function Home() {
           scrollToRef={scrollToRef}
           aboutRef={aboutRef}
           skillsRef={skillsRef}
-          workRef={workRef}
+          // workRef={workRef}
           contactRef={contactRef}
         />
       )}
