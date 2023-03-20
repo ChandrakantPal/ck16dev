@@ -32,14 +32,14 @@ const Header: FC<HeaderProps> = ({
       let st = window.pageYOffset || document.documentElement.scrollTop;
       if (st > lastScrollTop) {
         // scroll down
-        headerRef.current.classList.remove("animate-slide");
-        headerRef.current.classList.remove("sticky");
-        headerRef.current.classList.remove("top-0");
+        headerRef?.current?.classList?.remove("animate-slide");
+        headerRef?.current?.classList?.remove("sticky");
+        headerRef?.current?.classList?.remove("top-0");
       } else {
         // scroll up
-        headerRef.current.classList.add("animate-slide");
-        headerRef.current.classList.add("sticky");
-        headerRef.current.classList.add("top-0");
+        headerRef?.current?.classList?.add("animate-slide");
+        headerRef?.current?.classList?.add("sticky");
+        headerRef?.current?.classList?.add("top-0");
       }
       lastScrollTop = st <= 0 ? 0 : st;
     });
