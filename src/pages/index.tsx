@@ -35,7 +35,10 @@ export default function Home() {
     <div>
       <Head>
         <title>ck16dev</title>
-        <meta name="description" content="Chandrakant Pal frontend developer" />
+        <meta
+          name="description"
+          content="I'm Chandrakant Pal, a self-taught software developer who enjoys building user-centric products. I specialize in web development and have experience with technologies like ReactJS, NextJS, TypeScript, React Native, NodeJS, GraphQL, MongoDB, and PostgreSQL."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header
