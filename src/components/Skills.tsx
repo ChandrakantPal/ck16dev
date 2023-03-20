@@ -1,6 +1,6 @@
-import { FC, RefObject } from 'react'
-import SectionHeader from './SectionHeader'
-import Skill from './Skill'
+import { FC, RefObject } from "react";
+import SectionHeader from "./SectionHeader";
+import Skill from "./Skill";
 
 const Skills: FC<{ skillsRef: RefObject<HTMLElement> }> = ({ skillsRef }) => {
   return (
@@ -11,27 +11,49 @@ const Skills: FC<{ skillsRef: RefObject<HTMLElement> }> = ({ skillsRef }) => {
     >
       <SectionHeader title="skills" />
       <div className="px-10 my-10">
-        <Skill title="ReactJS" url="/images/logos/react.png" proficiency={8} />
-        <Skill title="NextJS" url="/images/logos/next.png" proficiency={8} />
-        <Skill
-          title="Typescript"
-          url="/images/logos/typescript.png"
-          proficiency={8}
-        />
-        <Skill title="NodeJS" url="/images/logos/node.png" proficiency={8} />
-        <Skill
-          title="GraphQL"
-          url="/images/logos/graphql.png"
-          proficiency={7}
-        />
-        <Skill
-          title="PostgreSQL"
-          url="/images/logos/postgresql.png"
-          proficiency={5}
-        />
+        {[
+          {
+            title: "ReactJS",
+            url: "/images/logos/react.png",
+            proficiency: 8,
+            key: `1R`,
+          },
+          {
+            title: "NextJS",
+            url: "/images/logos/next.png",
+            proficiency: 8,
+            key: `2N`,
+          },
+          {
+            title: "Typescript",
+            url: "/images/logos/typescript.png",
+            proficiency: 8,
+            key: `3T`,
+          },
+          {
+            title: "NodeJS",
+            url: "/images/logos/node.png",
+            proficiency: 8,
+            key: `4N`,
+          },
+          {
+            title: "GraphQL",
+            url: "/images/logos/graphql.png",
+            proficiency: 7,
+            key: `5G`,
+          },
+          {
+            title: "PostgreSQL",
+            url: "/images/logos/postgresql.png",
+            proficiency: 5,
+            key: `6p`,
+          },
+        ].map(({ title, url, proficiency, key }) => (
+          <Skill key={key} title={title} url={url} proficiency={proficiency} />
+        ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Skills
+export default Skills;
