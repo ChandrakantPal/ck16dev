@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FC, RefObject } from "react";
 import SectionHeader from "./SectionHeader";
 
@@ -18,11 +19,16 @@ const About: FC<{ aboutRef: RefObject<HTMLElement> }> = ({ aboutRef }) => {
           </p>
           <p className="text-gray-400 md:text-xl"> Learn.Build.Repeat.</p>
         </div>
-        <div className="w-full mx-24 md:mx-10 md:w-1/2">
-          <img
-            src="/images/me.jpg"
-            className="object-contain rounded-lg shadow-xl w-44 md:w-56 filter saturate-0"
-          />
+        <div className="relative w-full mx-24 md:mx-10 md:w-1/2">
+          <div className="relative aspect-[9/16] w-44 md:w-56">
+            <Image
+              src="/images/me.jpg"
+              className="object-contain rounded-lg shadow-xl filter saturate-0"
+              objectFit="contain"
+              layout="fill"
+              alt="That's me"
+            />
+          </div>
         </div>
       </div>
     </section>

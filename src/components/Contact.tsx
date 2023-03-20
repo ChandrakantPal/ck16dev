@@ -1,5 +1,7 @@
-import { FC, RefObject } from 'react'
-import SectionHeader from './SectionHeader'
+import Image from "next/image";
+import Link from "next/link";
+import { FC, RefObject } from "react";
+import SectionHeader from "./SectionHeader";
 
 const Contact: FC<{ contactRef: RefObject<HTMLElement> }> = ({
   contactRef,
@@ -11,21 +13,39 @@ const Contact: FC<{ contactRef: RefObject<HTMLElement> }> = ({
         Get in touch with me
       </h1>
       <div className="flex items-center justify-center h-20 md:h-40">
-        <a href="https://github.com/ChandrakantPal" target="_blank">
-          <img
-            src="/images/logos/github.png"
-            className="object-contain w-10 mx-4 md:w-16 filter invert"
-          />
+        <a
+          href="https://github.com/ChandrakantPal"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="relative w-10 mx-4 cursor-pointer aspect-square md:w-16">
+            <Image
+              src="/images/logos/github.png"
+              className="filter invert"
+              layout="fill"
+              objectFit="contain"
+              alt="Github Profile"
+            />
+          </div>
         </a>
-        <a href="https://www.linkedin.com/in/chandrakant-pal" target="_blank">
-          <img
-            src="/images/logos/linkedin.png"
-            className="object-contain w-10 mx-4 md:w-16"
-          />
+        <a
+          href="https://www.linkedin.com/in/chandrakant-pal"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="relative w-10 mx-4 cursor-pointer aspect-square md:w-16">
+            <Image
+              src="/images/logos/linkedin.png"
+              className="filter invert"
+              layout="fill"
+              objectFit="contain"
+              alt="LinkedIn Profile"
+            />
+          </div>
         </a>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

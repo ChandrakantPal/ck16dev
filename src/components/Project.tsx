@@ -1,16 +1,17 @@
-import Aos from 'aos'
-import { FC, useEffect } from 'react'
+import Aos from "aos";
+import Image from "next/image";
+import { FC, useEffect } from "react";
 
 interface ProjectProp {
-  link: string
-  title: string
-  stack: string
+  link: string;
+  title: string;
+  stack: string;
 }
 
 const Project: FC<ProjectProp> = ({ link, title, stack }) => {
   useEffect(() => {
-    Aos.init()
-  }, [])
+    Aos.init();
+  }, []);
   return (
     <a
       data-aos="fade-up"
@@ -18,14 +19,18 @@ const Project: FC<ProjectProp> = ({ link, title, stack }) => {
       className="flex flex-col items-center justify-center w-full rounded-lg"
       target="_blank"
     >
-      <img
-        src="/images/logos/project.png"
-        className="object-contain w-32 md:w-40"
-      />
+      <div className="relative w-32 md:w-40 aspect-square">
+        <Image
+          src="/images/logos/project.png"
+          layout="fill"
+          objectFit="contain"
+          alt={title}
+        />
+      </div>
       <p className="w-2/3 mt-2 text-sm text-center text-gray-500">{title}</p>
       <p className="w-2/3 mt-2 text-sm text-center text-gray-500">{stack}</p>
     </a>
-  )
-}
+  );
+};
 
-export default Project
+export default Project;
