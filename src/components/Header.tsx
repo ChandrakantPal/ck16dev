@@ -53,22 +53,23 @@ const Header: FC<HeaderProps> = ({
       className="z-50 w-full p-4 shadow-2xl bg-bunker bg-opacity-80"
     >
       <nav className="flex items-center justify-between">
-        <div onClick={() => scrollToRef(heroRef)}>
+        <div onClick={() => scrollToRef(heroRef)} className="cursor-pointer">
           <Logo />
         </div>
         <div className="items-center justify-center flex-grow-0 hidden my-2 md:flex md:m-0">
-          <div onClick={() => scrollToRef(aboutRef)}>
-            <HeaderItem title="about" />
-          </div>
-          <div onClick={() => scrollToRef(skillsRef)}>
-            <HeaderItem title="skills" />
-          </div>
-          {/* <div onClick={() => scrollToRef(workRef)}>
-            <HeaderItem title="work" />
-          </div> */}
-          <div onClick={() => scrollToRef(contactRef)}>
-            <HeaderItem title="contact" />
-          </div>
+          {[
+            { title: "about", ref: aboutRef },
+            { title: "skills", ref: skillsRef },
+            { title: "contact", ref: contactRef },
+          ].map(({ title, ref }) => (
+            <div
+              key={title}
+              onClick={() => scrollToRef(ref)}
+              className="cursor-pointer"
+            >
+              <HeaderItem title={title} />
+            </div>
+          ))}
         </div>
         <button
           className="px-4 py-2 text-lg text-center border border-white rounded-lg w-14 focus:outline-none md:hidden focus:border-green-700"

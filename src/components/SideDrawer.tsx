@@ -22,38 +22,22 @@ const SideDrawer: FC<SideDrawerProp> = ({
     <>
       <nav className="fixed right-0 z-20 w-40 h-screen md:hidden">
         <div className="flex flex-col items-center justify-around w-full h-full py-20 ml-auto border-l border-gray-900 shadow-inner bg-bunker">
-          <div
-            onClick={() => {
-              setToggle(false);
-              scrollToRef(aboutRef);
-            }}
-          >
-            <HeaderItem title="about" />
-          </div>
-          <div
-            onClick={() => {
-              setToggle(false);
-              scrollToRef(skillsRef);
-            }}
-          >
-            <HeaderItem title="skills" />
-          </div>
-          {/* <div
-            onClick={() => {
-              setToggle(false)
-              scrollToRef(workRef)
-            }}
-          >
-            <HeaderItem title="work" />
-          </div> */}
-          <div
-            onClick={() => {
-              setToggle(false);
-              scrollToRef(contactRef);
-            }}
-          >
-            <HeaderItem title="contact" />
-          </div>
+          {[
+            { title: "about", ref: aboutRef },
+            { title: "skills", ref: skillsRef },
+            { title: "contact", ref: contactRef },
+          ].map(({ title, ref }) => (
+            <div
+              key={title}
+              onClick={() => {
+                setToggle(false);
+                scrollToRef(ref);
+              }}
+              className="cursor-pointer"
+            >
+              <HeaderItem title={title} />
+            </div>
+          ))}
         </div>
       </nav>
       <div
