@@ -1,14 +1,11 @@
-import { FC, RefObject } from "react";
+import { forwardRef } from "react";
 import SectionHeader from "./SectionHeader";
 import Skill from "./Skill";
 
-const Skills: FC<{ skillsRef: RefObject<HTMLElement> }> = ({ skillsRef }) => {
+// eslint-disable-next-line react/display-name
+const Skills = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <section
-      data-aos="fade-up"
-      className="w-full mb-24 md:mb-36"
-      ref={skillsRef}
-    >
+    <section data-aos="fade-up" className="w-full mb-24 md:mb-36" ref={ref}>
       <SectionHeader title="skills" />
       <div className="px-10 my-10">
         {[
@@ -54,6 +51,6 @@ const Skills: FC<{ skillsRef: RefObject<HTMLElement> }> = ({ skillsRef }) => {
       </div>
     </section>
   );
-};
+});
 
 export default Skills;

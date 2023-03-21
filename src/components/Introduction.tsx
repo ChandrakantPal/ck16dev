@@ -1,11 +1,12 @@
-import { FC, RefObject } from 'react'
-import Typist from 'react-typist'
+/* eslint-disable react/display-name */
+import { forwardRef } from "react";
+import Typist from "react-typist";
 
-const Introduction: FC<{ heroRef: RefObject<HTMLElement> }> = ({ heroRef }) => {
+const Introduction = forwardRef<HTMLElement>((_, ref) => {
   return (
     <section
       className="flex flex-col items-center justify-center w-full h-200 lg:h-screen"
-      ref={heroRef}
+      ref={ref}
     >
       <div className="w-full h-full p-6 mt-20 text-left md:p-14 lg:p-20">
         <Typist cursor={{ show: false }}>
@@ -33,7 +34,7 @@ const Introduction: FC<{ heroRef: RefObject<HTMLElement> }> = ({ heroRef }) => {
         </Typist>
       </div>
     </section>
-  )
-}
+  );
+});
 
-export default Introduction
+export default Introduction;

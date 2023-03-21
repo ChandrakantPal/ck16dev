@@ -1,13 +1,11 @@
+/* eslint-disable react/display-name */
 import Image from "next/image";
-import Link from "next/link";
-import { FC, RefObject } from "react";
+import { forwardRef } from "react";
 import SectionHeader from "./SectionHeader";
 
-const Contact: FC<{ contactRef: RefObject<HTMLElement> }> = ({
-  contactRef,
-}) => {
+const Contact = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <section className="w-full" ref={contactRef}>
+    <section className="w-full" ref={ref}>
       <SectionHeader title="contact" />
       <h1 className="mt-4 text-center text-gray-500 tex-xl md:text-2xl">
         Get in touch with me
@@ -46,6 +44,6 @@ const Contact: FC<{ contactRef: RefObject<HTMLElement> }> = ({
       </div>
     </section>
   );
-};
+});
 
 export default Contact;
