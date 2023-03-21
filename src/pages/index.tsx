@@ -19,7 +19,7 @@ export default function Home() {
   const scrollToRef = (ref: RefObject<HTMLElement>) => {
     ref.current.scrollIntoView({
       behavior: "smooth",
-      block: "center",
+      block: "start",
     });
   };
 
@@ -62,11 +62,11 @@ export default function Home() {
         />
       )}
       <main className="container mx-auto">
-        <Introduction heroRef={heroRef} />
-        <About aboutRef={aboutRef} />
-        <Skills skillsRef={skillsRef} />
+        <Introduction ref={heroRef} />
+        <About ref={aboutRef} />
+        <Skills ref={skillsRef} />
         {/* <Work workRef={workRef} /> */}
-        <Contact contactRef={contactRef} />
+        <Contact ref={contactRef} />
       </main>
     </div>
   );
