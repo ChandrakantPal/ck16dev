@@ -1,48 +1,49 @@
-import { FC, RefObject } from "react";
+"use client";
+
+import { useEffect } from "react";
+import { navItems } from "@/config/nav";
 import HeaderItem from "./HeaderItem";
 
-interface SideDrawerProp {
-  setToggle: (toggle: any) => void;
-  scrollToRef: (ref: RefObject<HTMLElement>) => void;
-  aboutRef: RefObject<HTMLElement>;
-  skillsRef: RefObject<HTMLElement>;
-  // workRef: RefObject<HTMLElement>
-  contactRef: RefObject<HTMLElement>;
+interface SideDrawerProps {
+  onClose: () => void;
 }
 
-const SideDrawer: FC<SideDrawerProp> = ({
-  setToggle,
-  scrollToRef,
-  aboutRef,
-  skillsRef,
-  // workRef,
-  contactRef,
-}) => {
+const SideDrawer = ({ onClose }: SideDrawerProps) => {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   return (
     <>
-      <nav className="fixed right-0 z-20 w-40 h-screen md:hidden">
+      <nav
+        id="mobile-nav"
+        className="fixed right-0 z-20 w-40 h-screen md:hidden"
+      >
         <div className="flex flex-col items-center justify-around w-full h-full py-20 ml-auto border-l border-gray-900 shadow-inner bg-bunker">
-          {[
-            { title: "about", ref: aboutRef },
-            { title: "skills", ref: skillsRef },
-            { title: "contact", ref: contactRef },
-          ].map(({ title, ref }) => (
-            <div
+          {navItems.map(({ title, href }) => (
+            <a
               key={title}
-              onClick={() => {
-                setToggle(false);
-                scrollToRef(ref);
-              }}
-              className="cursor-pointer"
+              href={href}
+              onClick={onClose}
+              className="rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
             >
               <HeaderItem title={title} />
-            </div>
+            </a>
           ))}
         </div>
       </nav>
+      {/* Click-away target. Escape closes the drawer for keyboard users. */}
       <div
-        className="fixed z-10 w-screen h-screen bg-black opacity-80 md:hidden"
-        onClick={() => setToggle(false)}
+        aria-hidden="true"
+        className="fixed inset-0 z-10 bg-black/80 md:hidden"
+        onClick={onClose}
       />
     </>
   );
