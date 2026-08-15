@@ -1,10 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-body: var(--font-roboto-mono), ui-monospace, monospace;
+
+  --color-bunker: #0d1117;
+  --color-bunker-50: #637ea7;
+  --color-bunker-100: #577199;
+  --color-bunker-200: #445979;
+  --color-bunker-300: #324158;
+  --color-bunker-400: #1f2938;
+  --color-bunker-500: #0d1117;
+  --color-bunker-600: #000000;
+
+  /*
+   * Body copy. The old `text-gray-500` (#6b7280) scored 3.9:1 against #0d1117,
+   * below the 4.5:1 WCAG AA floor for normal text. This scores 7.5:1.
+   */
+  --color-muted: #9ca3af;
+  /*
+   * Borders and dividers only — never text. 3.9:1 clears the 3:1 floor for
+   * non-text UI, but not the 4.5:1 floor for body copy.
+   */
+  --color-subtle: #6b7280;
+
+  --spacing-200: 60rem;
+
+  --animate-slide: slide 0.3s;
+
+  @keyframes slide {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(10px);
+    }
+  }
+}
+
+/*
+ * Preserves the max-widths of the hand-rolled plugin this replaces (lg caps at
+ * 975px). Deliberately not named `container`: overriding that built-in emits both
+ * rule sets, leaving the winner to depend on source order.
+ */
+@utility site-shell {
+  width: 100%;
+  margin-inline: auto;
+  @media (width >= 40rem) {
+    max-width: 40rem;
+  }
+  @media (width >= 48rem) {
+    max-width: 48rem;
+  }
+  @media (width >= 64rem) {
+    max-width: 60.9375rem;
+  }
+}
 
 @layer base {
-    body {
-        @apply bg-bunker text-white font-body
+  body {
+    @apply bg-bunker text-white font-body;
+  }
+
+  /* Anchor-link nav replaces the old JS scrollIntoView; clears the sticky header. */
+  :target {
+    scroll-margin-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
     }
+  }
 }
