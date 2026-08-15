@@ -1,40 +1,35 @@
-/* eslint-disable react/display-name */
-import { forwardRef } from "react";
-import Typist from "react-typist";
+import { HOME_SECTION_ID } from "@/config/nav";
+import Typewriter from "./Typewriter";
 
-const Introduction = forwardRef<HTMLElement>((_, ref) => {
-  return (
-    <section
-      className="flex flex-col items-center justify-center w-full h-200 lg:h-screen"
-      ref={ref}
-    >
-      <div className="w-full h-full p-6 mt-20 text-left md:p-14 lg:p-20">
-        <Typist cursor={{ show: false }}>
-          <p className="mt-1 text-lg text-green-400 md:text-xl">Hi, I am</p>
-        </Typist>
-        <Typist cursor={{ show: false }}>
-          <Typist.Delay ms={1000} />
-          <p className="mt-6 text-3xl font-semibold text-gray-400 md:text-4xl lg:text-6xl">
-            Chandrakant Pal.
-          </p>
-        </Typist>
-        <Typist cursor={{ show: false }}>
-          <Typist.Delay ms={2500} />
-          <p className="mt-1 text-3xl font-semibold text-gray-500 md:text-4xl lg:text-6xl">
-            I build things on the web.
-          </p>
-          <div className="w-full">
-            <p className="mt-8 text-lg text-gray-500 md:text-xl">
-              I am Web Developer based out of India. <br /> Tech enthusiast,
-              constantly learning some new tech out there.
-              <br /> History buff,
-              <br /> Movie buff.
-            </p>
-          </div>
-        </Typist>
-      </div>
-    </section>
-  );
-});
+const Introduction = () => (
+  <section
+    id={HOME_SECTION_ID}
+    className="flex flex-col items-center justify-center w-full h-200 lg:h-screen"
+  >
+    <div className="w-full h-full p-6 mt-20 text-left md:p-14 lg:p-20">
+      <Typewriter
+        text="Hi, I am"
+        className="block mt-1 text-lg text-green-400 md:text-xl"
+      />
+      <Typewriter
+        as="h1"
+        text="Chandrakant Pal."
+        startDelayMs={1000}
+        className="block mt-6 text-3xl font-semibold text-gray-400 md:text-4xl lg:text-6xl"
+      />
+      <Typewriter
+        text="I build things on the web."
+        startDelayMs={2500}
+        className="block mt-1 text-3xl font-semibold text-muted md:text-4xl lg:text-6xl"
+      />
+      <p className="w-full mt-8 text-lg text-muted md:text-xl">
+        I am a Web Developer based out of India.
+        <br /> Tech enthusiast, constantly learning some new tech out there.
+        <br /> History buff,
+        <br /> Movie buff.
+      </p>
+    </div>
+  </section>
+);
 
 export default Introduction;
