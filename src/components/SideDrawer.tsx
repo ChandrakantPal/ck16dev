@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { navItems } from "@/config/nav";
+import { useCommandSurface } from "./command/CommandProvider";
 import HeaderItem from "./HeaderItem";
 
 interface SideDrawerProps {
@@ -9,6 +10,8 @@ interface SideDrawerProps {
 }
 
 const SideDrawer = ({ onClose }: SideDrawerProps) => {
+  const { openTerminal } = useCommandSurface();
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -37,6 +40,17 @@ const SideDrawer = ({ onClose }: SideDrawerProps) => {
               <HeaderItem title={title} />
             </a>
           ))}
+          {/* The ⌘K trigger is desktop-only, so touch visitors get in here. */}
+          <button
+            type="button"
+            onClick={() => {
+              onClose();
+              openTerminal();
+            }}
+            className="rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
+          >
+            <HeaderItem title="terminal" />
+          </button>
         </div>
       </nav>
       {/* Click-away target. Escape closes the drawer for keyboard users. */}

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import CommandProvider from "@/components/command/CommandProvider";
+import Header from "@/components/Header";
 import "@/styles/globals.css";
 
 /*
@@ -21,7 +23,12 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: ReactNode }) => (
   <html lang="en" className={robotoMono.variable}>
-    <body>{children}</body>
+    <body>
+      <CommandProvider>
+        <Header />
+        {children}
+      </CommandProvider>
+    </body>
   </html>
 );
 

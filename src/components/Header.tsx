@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { HOME_SECTION_ID, navItems } from "@/config/nav";
+import CommandTrigger from "./command/CommandTrigger";
 import HeaderItem from "./HeaderItem";
 import Logo from "./Logo";
 import SideDrawer from "./SideDrawer";
@@ -54,16 +55,19 @@ const Header = () => {
               </a>
             ))}
           </div>
-          <button
-            type="button"
-            className="px-4 py-2 text-lg text-center border border-white rounded-lg w-14 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-nav"
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setIsMenuOpen((wasOpen) => !wasOpen)}
-          >
-            <span aria-hidden="true">{isMenuOpen ? "x" : ">_"}</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <CommandTrigger />
+            <button
+              type="button"
+              className="px-4 py-2 text-lg text-center border border-white rounded-lg w-14 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-nav"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              onClick={() => setIsMenuOpen((wasOpen) => !wasOpen)}
+            >
+              <span aria-hidden="true">{isMenuOpen ? "x" : ">_"}</span>
+            </button>
+          </div>
         </nav>
       </header>
       {isMenuOpen && <SideDrawer onClose={closeMenu} />}
