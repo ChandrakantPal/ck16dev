@@ -1,31 +1,59 @@
-import { navItems } from "@/config/nav";
+import { isSectionLink, navItems } from "@/config/nav";
+import { site } from "@/config/site";
 import { readableFiles, whoamiLines } from "./content";
 import type { Command, CommandContext } from "./types";
 
 const externalProfiles = [
-  {
-    name: "github",
-    url: "https://github.com/ChandrakantPal",
-    description: "Open my GitHub profile",
-  },
+  { name: "github", url: site.github, description: "Open my GitHub profile" },
   {
     name: "linkedin",
-    url: "https://www.linkedin.com/in/chandrakant-pal",
+    url: site.linkedin,
     description: "Open my LinkedIn profile",
   },
+  { name: "resume", url: site.resume, description: "Open my resume" },
 ];
 
 const sectionCommands: Command[] = navItems.map(({ title, href }) => ({
   name: title,
   aliases: [`cd ${title}`, `cd ./${title}`],
-  description: `Go to the ${title} section`,
+  description: isSectionLink(href)
+    ? `Go to the ${title} section`
+    : `Open /${title}`,
   group: "navigation",
   inPalette: true,
   run: (_args, context) => {
-    context.goToSection(href);
+    context.navigate(href);
     context.closeSurface();
   },
 }));
+
+/*
+ * Pages that are reachable but deliberately not in the header nav — the nav is
+ * already at the width the mono `cd ./name` items can carry.
+ */
+const pageCommands: Command[] = [
+  {
+    name: "music",
+    aliases: ["spotify"],
+    description: "Open /music",
+    group: "navigation",
+    inPalette: true,
+    run: (_args, context) => {
+      context.navigate("/music");
+      context.closeSurface();
+    },
+  },
+];
+
+/** Every name `open` will accept, and where each one goes. */
+const openTargets: Record<string, string> = {
+  ...Object.fromEntries(navItems.map(({ title, href }) => [title, href])),
+  music: "/music",
+  ...Object.fromEntries(
+    externalProfiles.map(({ name, url }) => [name, url]),
+  ),
+  home: "/",
+};
 
 const linkCommands: Command[] = externalProfiles.map(
   ({ name, url, description }) => ({
@@ -123,6 +151,46 @@ const shellCommands: Command[] = [
     },
   },
   {
+    name: "open",
+    aliases: ["go"],
+    description: "Open a target, e.g. `open now`",
+    group: "shell",
+    inPalette: false,
+    run: (args, context) => {
+      const [target] = args;
+
+      if (!target) {
+        return [
+          "usage: open <target>",
+          `targets: ${Object.keys(openTargets).join("  ")}`,
+        ];
+      }
+
+      const destination = openTargets[target.toLowerCase()];
+
+      if (!destination) {
+        return [`open: ${target}: No such target`];
+      }
+
+      if (destination.startsWith("http")) {
+        context.openUrl(destination);
+      } else {
+        context.navigate(destination);
+      }
+      context.closeSurface();
+    },
+  },
+  {
+    name: "theme",
+    aliases: [],
+    description: "Switch between dark and light",
+    group: "shell",
+    inPalette: true,
+    run: (_args, context) => {
+      context.toggleTheme();
+    },
+  },
+  {
     name: "sudo",
     aliases: [],
     description: "Elevate privileges",
@@ -134,6 +202,7 @@ const shellCommands: Command[] = [
 
 export const commands: Command[] = [
   ...sectionCommands,
+  ...pageCommands,
   ...linkCommands,
   ...shellCommands,
 ];

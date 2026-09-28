@@ -6,9 +6,11 @@ export type CommandGroup = "navigation" | "links" | "shell";
  * both surfaces.
  */
 export interface CommandContext {
-  goToSection: (hash: string) => void;
+  /** Accepts a route (`/now`) or a root-relative anchor (`/#about`). */
+  navigate: (href: string) => void;
   openUrl: (url: string) => void;
   clearOutput: () => void;
+  toggleTheme: () => void;
   closeSurface: () => void;
   history: readonly string[];
 }

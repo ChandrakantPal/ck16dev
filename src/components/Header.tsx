@@ -44,12 +44,17 @@ const Header = () => {
           <a href={`#${HOME_SECTION_ID}`} aria-label="Back to top">
             <Logo />
           </a>
-          <div className="items-center justify-center flex-grow-0 hidden my-2 md:flex md:m-0">
+          {/*
+            lg, not md: five mono items plus the logo and the trigger need about
+            920px, and md starts at 768. Below lg the drawer carries the same
+            list, so nothing is unreachable — it is just not on the bar.
+          */}
+          <div className="items-center justify-center flex-grow-0 hidden my-2 lg:flex lg:m-0">
             {navItems.map(({ title, href }) => (
               <a
                 key={title}
                 href={href}
-                className="rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
+                className="rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 <HeaderItem title={title} />
               </a>
@@ -59,7 +64,7 @@ const Header = () => {
             <CommandTrigger />
             <button
               type="button"
-              className="px-4 py-2 text-lg text-center border border-white rounded-lg w-14 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
+              className="px-4 py-2 text-lg text-center border border-strong rounded-lg w-14 lg:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-nav"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}

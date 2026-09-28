@@ -10,6 +10,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 import CommandPalette from "./CommandPalette";
 import Terminal from "./Terminal";
 
@@ -32,6 +34,8 @@ export const useCommandSurface = (): CommandSurfaceApi => {
 
 const CommandProvider = ({ children }: { children: ReactNode }) => {
   const [surface, setSurface] = useState<Surface>(null);
+  const router = useRouter();
+  const { resolvedTheme, setTheme } = useTheme();
   /* Focus belongs back where the visitor left it once a surface closes. */
   const lastFocused = useRef<HTMLElement | null>(null);
 
@@ -88,13 +92,24 @@ const CommandProvider = ({ children }: { children: ReactNode }) => {
     };
   }, [surface]);
 
-  const goToSection = useCallback((hash: string) => {
-    window.location.hash = hash;
-  }, []);
+  /*
+   * Through the router rather than window.location, so `/#about` works from
+   * every route: a page change and an in-page anchor are the same call here.
+   */
+  const navigate = useCallback(
+    (href: string) => {
+      router.push(href);
+    },
+    [router],
+  );
 
   const openUrl = useCallback((url: string) => {
     window.open(url, "_blank", "noopener,noreferrer");
   }, []);
+
+  const toggleTheme = useCallback(() => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  }, [resolvedTheme, setTheme]);
 
   return (
     <CommandSurfaceContext.Provider value={api}>
@@ -103,15 +118,17 @@ const CommandProvider = ({ children }: { children: ReactNode }) => {
         <CommandPalette
           onClose={close}
           onOpenTerminal={api.openTerminal}
-          goToSection={goToSection}
+          navigate={navigate}
           openUrl={openUrl}
+          toggleTheme={toggleTheme}
         />
       )}
       {surface === "terminal" && (
         <Terminal
           onClose={close}
-          goToSection={goToSection}
+          navigate={navigate}
           openUrl={openUrl}
+          toggleTheme={toggleTheme}
         />
       )}
     </CommandSurfaceContext.Provider>

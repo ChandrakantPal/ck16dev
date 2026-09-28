@@ -4,20 +4,21 @@ import { useEffect, useRef } from "react";
 import { PROMPT, useTerminal } from "./useTerminal";
 
 const LINE_COLOURS = {
-  input: "text-green-400",
+  input: "text-accent",
   output: "text-muted",
-  error: "text-red-400",
+  error: "text-danger",
 } as const;
 
 interface TerminalProps {
   onClose: () => void;
-  goToSection: (hash: string) => void;
+  navigate: (href: string) => void;
   openUrl: (url: string) => void;
+  toggleTheme: () => void;
 }
 
-const Terminal = ({ onClose, goToSection, openUrl }: TerminalProps) => {
+const Terminal = ({ onClose, navigate, openUrl, toggleTheme }: TerminalProps) => {
   const { lines, draft, setDraft, execute, complete, recallHistory } =
-    useTerminal({ onClose, goToSection, openUrl });
+    useTerminal({ onClose, navigate, openUrl, toggleTheme });
 
   const inputRef = useRef<HTMLInputElement>(null);
   const outputEndRef = useRef<HTMLDivElement>(null);
@@ -70,12 +71,12 @@ const Terminal = ({ onClose, goToSection, openUrl }: TerminalProps) => {
         onClick={() => inputRef.current?.focus()}
       >
         <div className="flex items-center justify-between px-4 py-2 border-b border-bunker-300">
-          <span className="text-sm text-green-500">ck16 {">"}_</span>
+          <span className="text-sm text-accent">ck16 {">"}_</span>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close terminal"
-            className="px-2 text-sm rounded text-muted hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
+            className="px-2 text-sm rounded text-muted hover:text-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             esc
           </button>
@@ -100,7 +101,7 @@ const Terminal = ({ onClose, goToSection, openUrl }: TerminalProps) => {
         </div>
 
         <div className="flex items-center gap-2 px-4 py-3 border-t border-bunker-300">
-          <label htmlFor="terminal-input" className="text-sm text-green-500">
+          <label htmlFor="terminal-input" className="text-sm text-accent">
             {PROMPT}
           </label>
           <input
@@ -109,7 +110,7 @@ const Terminal = ({ onClose, goToSection, openUrl }: TerminalProps) => {
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 text-sm bg-transparent outline-none text-white caret-green-400"
+            className="flex-1 text-sm bg-transparent outline-none text-strong caret-green-400"
             autoComplete="off"
             autoCapitalize="off"
             autoCorrect="off"

@@ -13,19 +13,22 @@ const GROUP_LABELS: Record<CommandGroup, string> = {
 interface CommandPaletteProps {
   onClose: () => void;
   onOpenTerminal: () => void;
-  goToSection: (hash: string) => void;
+  navigate: (href: string) => void;
   openUrl: (url: string) => void;
+  toggleTheme: () => void;
 }
 
 const CommandPalette = ({
   onClose,
   onOpenTerminal,
-  goToSection,
+  navigate,
   openUrl,
+  toggleTheme,
 }: CommandPaletteProps) => {
   const context: CommandContext = {
-    goToSection,
+    navigate,
     openUrl,
+    toggleTheme,
     clearOutput: () => {},
     closeSurface: onClose,
     history: [],
@@ -50,7 +53,7 @@ const CommandPalette = ({
         <CommandMenu.Input
           autoFocus
           placeholder="Type a command or search…"
-          className="w-full px-4 py-3 text-sm bg-transparent border-b outline-none border-bunker-300 text-white placeholder:text-muted"
+          className="w-full px-4 py-3 text-sm bg-transparent border-b outline-none border-bunker-300 text-strong placeholder:text-muted"
         />
         <CommandMenu.List className="max-h-80 overflow-y-auto p-2">
           <CommandMenu.Empty className="px-2 py-4 text-sm text-center text-muted">
@@ -74,7 +77,7 @@ const CommandPalette = ({
                     key={command.name}
                     value={`${command.name} ${command.description}`}
                     onSelect={() => command.run([], context)}
-                    className="flex items-center justify-between px-3 py-2 text-sm rounded cursor-pointer text-white data-[selected=true]:bg-bunker-400"
+                    className="flex items-center justify-between px-3 py-2 text-sm rounded cursor-pointer text-strong data-[selected=true]:bg-bunker-400"
                   >
                     <span>{command.name}</span>
                     <span className="text-xs text-muted">
@@ -96,7 +99,7 @@ const CommandPalette = ({
                 onClose();
                 onOpenTerminal();
               }}
-              className="flex items-center justify-between px-3 py-2 text-sm rounded cursor-pointer text-white data-[selected=true]:bg-bunker-400"
+              className="flex items-center justify-between px-3 py-2 text-sm rounded cursor-pointer text-strong data-[selected=true]:bg-bunker-400"
             >
               <span>terminal</span>
               <span className="text-xs text-muted">

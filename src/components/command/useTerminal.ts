@@ -34,14 +34,16 @@ const toLines = (texts: string[], kind: TerminalLineKind): TerminalLine[] =>
 
 interface UseTerminalOptions {
   onClose: () => void;
-  goToSection: (hash: string) => void;
+  navigate: (href: string) => void;
   openUrl: (url: string) => void;
+  toggleTheme: () => void;
 }
 
 export function useTerminal({
   onClose,
-  goToSection,
+  navigate,
   openUrl,
+  toggleTheme,
 }: UseTerminalOptions) {
   const [lines, setLines] = useState<TerminalLine[]>(() =>
     toLines(WELCOME, "output"),
@@ -77,8 +79,9 @@ export function useTerminal({
       }
 
       const context: CommandContext = {
-        goToSection,
+        navigate,
         openUrl,
+        toggleTheme,
         clearOutput: () => setLines([]),
         closeSurface: onClose,
         history: nextHistory,
@@ -89,7 +92,7 @@ export function useTerminal({
         append(output, "output");
       }
     },
-    [append, goToSection, history, onClose, openUrl],
+    [append, navigate, history, onClose, openUrl, toggleTheme],
   );
 
   /** Completes the current word, or lists the candidates when ambiguous. */

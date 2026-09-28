@@ -41,7 +41,7 @@ const CommandTrigger = () => {
       type="button"
       onClick={openPalette}
       aria-label={`Open command palette (${shortcutHint})`}
-      className="items-center hidden gap-2 px-3 py-1.5 text-sm border rounded-lg md:flex border-bunker-300 text-muted hover:text-white hover:border-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
+      className="items-center hidden gap-2 px-3 py-1.5 text-sm border rounded-lg lg:flex border-bunker-300 text-muted hover:text-strong hover:border-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     >
       <span aria-hidden="true">{">_"}</span>
       <span aria-hidden="true" className="text-xs text-muted">
