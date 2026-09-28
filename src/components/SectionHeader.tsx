@@ -1,18 +1,12 @@
-import { FC } from 'react'
-
-interface SectionHeaderProp {
-  title: string
+interface SectionHeaderProps {
+  title: string;
 }
 
-const SectionHeader: FC<SectionHeaderProp> = ({ title }) => {
-  return (
-    <div className="flex items-center">
-      <h1 className="text-2xl text-left text-green-700 md:text-4xl">
-        ./{title}
-      </h1>
-      <div className="w-3/4 ml-4 border-b border-gray-500" />
-    </div>
-  )
-}
+const SectionHeader = ({ title }: SectionHeaderProps) => (
+  <div className="flex items-center">
+    <h2 className="text-2xl text-left text-accent-dim md:text-4xl">./{title}</h2>
+    <div className="w-3/4 ml-4 border-b border-subtle" />
+  </div>
+);
 
-export default SectionHeader
+export default SectionHeader;
