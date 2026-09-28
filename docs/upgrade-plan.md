@@ -1,9 +1,25 @@
 # Upgrade ck16.dev into a craft showcase
 
-> **Status — 2026-09-10.** Phase 0 is complete and Phase 1 is complete apart from the commands
-> whose destinations later phases create. Everything lives on `refactor/phase-0-migration-foundation`
-> (10 commits, unpushed, unmerged). Phases 2-5 have not started. Per-phase status notes are inline
-> below; the plan text itself is unchanged from the version approved on 2026-08-15.
+> **Status — 2026-09-27.** Phases 0-3 and 5 are complete. Phase 4 is built and structurally
+> verified but **unproven against live credentials** — every provider is env-gated, and only
+> GitHub and Letterboxd have been exercised against real data. Everything lives on
+> `refactor/phase-0-migration-foundation` (11 commits **plus a large, verified, still
+> uncommitted working tree**, unpushed, unmerged). `npm run lint`, `npm run typecheck`,
+> `npm run check:contrast`, and `npm run build` are all clean as of 2026-09-27, and every route
+> was smoke-tested against a running production server.
+>
+> **Immediate next action: commit the working tree** — the split is drafted in
+> [handoff.md](./handoff.md). Spotify is verified against live data; `/now` and `/music` both
+> render from it. Letterboxd and WakaTime were dropped on 2026-09-29.
+>
+> Added beyond the plan: **`/music`**, a Spotify insights page — see the handoff for what the
+> API still permits for apps created after November 2024 (most of the interesting endpoints are
+> deprecated). It needs the re-issued six-scope token for its library figures.
+>
+> Still deliberately dormant: **no case study** and **no blog post** ship, by decision, so the
+> `Work` section renders nothing, `/blog` shows an empty state, and neither is linked from the
+> nav, the command registry, or the sitemap. Per-phase notes are inline below; the plan text
+> itself is unchanged from the version approved on 2026-08-15.
 
 ## Context
 
@@ -30,8 +46,8 @@ well-built — while keeping the existing dark mono identity rather than rewriti
 MDX blog; real case studies replacing the clones; ⌘K command palette **and** an opt-in terminal mode;
 a `/now` page fed by live data; **Instagram is out** (Basic Display API shut down 2024-12-04; the
 replacement needs a Professional account and a 60-day refresh cron — not worth the rot);
-live sources are **GitHub, Spotify, Letterboxd, WakaTime, and books**; plus a **vinyl record player**
-for Spotify.
+live sources are **GitHub, Spotify, and books**; plus a **vinyl record player** for Spotify.
+(Letterboxd and WakaTime were dropped on 2026-09-29 — see the handoff.)
 
 ---
 
@@ -104,11 +120,15 @@ plumbing replaced by `href="#about"`, `scroll-margin-top`, and `html { scroll-be
 
 ## Phase 1 — Terminal + command palette
 
-**Status: architecture done, command set partial.** `src/lib/commands/registry.ts`, the `cmdk`
-palette, `Terminal.tsx`/`useTerminal.ts`, and a visible `CommandTrigger` are in. The registry
-currently carries `help`, `ls`, `cat`, `whoami`, `history`, `clear`, `exit`, `sudo`, `github`,
-`linkedin`, and the three nav sections. Still to add — each blocked on the phase that creates its
-destination: `work`, `blog`, `now`, `uses`, `theme`, `resume`, and a generic `open <target>`.
+**Status: done.** `src/lib/commands/registry.ts`, the `cmdk`
+palette, `Terminal.tsx`/`useTerminal.ts`, and a visible `CommandTrigger` are in. The registry carries
+`help`, `ls`, `cat`, `whoami`, `history`, `clear`, `exit`, `sudo`, `open <target>`, `theme`,
+`github`, `linkedin`, `resume`, and the nav entries (`about`, `skills`, `now`, `uses`, `contact`).
+`work` and `blog` remain unregistered on purpose — both destinations are empty by decision.
+
+Phase 5 also replaced `goToSection`, which set `window.location.hash` and so could not leave the
+current route, with a router-backed `navigate(href)`. Nav hrefs became root-relative (`/#about`)
+at the same time: bare anchors resolved against `/now` and `/blog` once those routes existed.
 
 The identity piece. Both surfaces read **one shared command registry** — that shared source of truth
 is the point, and it's what makes this read as engineering rather than as a gimmick.
@@ -130,11 +150,14 @@ can reach both — `cmdk` gives us focus trapping and listbox semantics for free
 
 ## Phase 2 — Content overhaul
 
-**Status: not started.** Note that the Work section was deleted rather than left commented out
-(`8e9ae4f`), taking `src/utils/project.config.ts` with it — so `src/config/work.ts`,
-`content/work/*.mdx`, and `/work/[slug]` are a rebuild, not an edit. The copy in `About.tsx` still
-reads "self-taught software developer" and "Learn.Build.Repeat.", and `src/config/skills.ts` still
-holds `proficiency` scores that `Skill.tsx` renders as `[****......] 8/10 and learning`.
+**Status: done, deliberately empty.** The skill ratings are gone (grouped lists now, sourced from
+the resume) and the copy is rewritten. `src/config/work.ts`, `src/lib/work.ts`, the `@next/mdx`
+pipeline, `/work/[slug]`, and the home-page `Work` listing are all in and verified end to end.
+**No case study ships**: the KarmaSuite material is not cleared for publication, so the decision on
+2026-09-11 was to write none for now rather than ship a hedged write-up. `Work` returns `null` with
+no entries, and the `#work` nav item and `work` command stay unregistered so neither points at a
+section that does not render. Reversing that is three small edits, listed in
+[handoff.md](./handoff.md).
 
 **Re-enable Work and replace the clones.** Widen `src/utils/project.config.ts` (rename to
 `src/config/work.ts`) from `{ link, title, stack }` to `{ slug, title, summary, role, stack[], year,
@@ -155,7 +178,20 @@ component body into `src/config/skills.ts`.
 
 ## Phase 3 — Blog
 
-**Status: not started.** No `content/` directory, no MDX dependencies, no `/blog` or `/feed.xml`.
+**Status: done, deliberately empty.** `/blog`, `/blog/[slug]`, and `/feed.xml` are in, with
+`rehype-pretty-code` + Shiki highlighting at build time, `reading-time`, GFM tables, and per-post
+`generateMetadata`. Frontmatter validation is shared with Phase 2 through
+`src/lib/frontmatter.ts` — extracted rather than duplicated — and a malformed field fails the
+build naming the file and the field.
+
+**No post ships**, matching the Phase 2 decision: `/blog` renders an honest empty state, and the
+route stays out of the nav, the command registry, and the sitemap until something is written.
+Authoring starts from `content/blog/_template.mdx`.
+
+Verified the same way Phase 2 was: a temporary fixture post exercised frontmatter, highlighting,
+inline-vs-block code, and GFM; the RSS output was checked as valid RSS 2.0; deleting a required
+field failed the build with `"publishedAt" must be a YYYY-MM-DD date`; then the fixture was
+removed.
 
 `@next/mdx` (16.3.1) + `gray-matter` for typed frontmatter, `rehype-pretty-code` + `shiki` for
 highlighting, `remark-gfm`, `reading-time`. Routes: `/blog`, `/blog/[slug]`,
@@ -166,8 +202,30 @@ highlighting, `remark-gfm`, `reading-time`. Routes: `/blog`, `/blog/[slug]`,
 
 ## Phase 4 — The signals layer + record player
 
-**Status: not started.** No `src/lib/signals/`, no `/now`, no `/uses`, no `scripts/spotify-auth.ts`.
-Blocked on the credentials listed under "What I need from you".
+**Status: built, not yet proven against live credentials.** All five providers, `getSignals()`,
+the record player, `/now`, `/uses`, `/api/spotify/now-playing`, and `scripts/spotify-auth.ts` are
+in. Every provider is env-gated via `isConfigured()`, so an unset one is skipped rather than
+failing — `.env.example` documents each.
+
+**Verified:** every provider deliberately broken at once (bogus usernames, bad tokens) — each
+failed independently, each logged by source, and `/now` still rendered. The RSS parsing path was
+exercised against a real public feed before Letterboxd was dropped; Goodreads still uses it.
+
+**Two defects found and fixed during that pass:**
+- The Spotify token refresh used `cache: "no-store"`, which silently dragged `/now` out of static
+  generation into per-request rendering — precisely the rate-limit trap this phase warns about.
+  The refresh now lives in its own `unstable_cache` entry and `/now` is static again.
+- RSS titles rendered as `Bill & Ted&#039;s Excellent Adventure`; the XML parser needed
+  `htmlEntities: true`.
+
+**Still unproven:** books has never run against real credentials. The
+record player has never seen a live track, so the tonearm-tracks-progress behaviour and the
+stops-on-pause behaviour are unverified in practice.
+
+GitHub deserves a note: the public events API returns nothing for this account (GitHub keeps ~90
+days, and the recent work is private), so the card falls back to recently-pushed repositories —
+filtered to non-forks touched within 90 days, which currently means it stays empty rather than
+resurfacing the tutorial clones Phase 2 buried.
 
 **One provider abstraction, not five bolted-on API routes.** This is the architectural core:
 
@@ -190,8 +248,6 @@ only ~180 requests per rolling 30s window and naive per-visitor polling would bl
 |---|---|---|
 | GitHub | none (or a token for higher limits) | Recent commits + repos |
 | Spotify | OAuth refresh token (doesn't expire) | `currently-playing`, `recently-played`, `top-read` |
-| Letterboxd | **none** — plain RSS at `/{user}/rss/` | `fast-xml-parser`; carries rating + watched date |
-| WakaTime | single API key | Languages, editors, weekly hours |
 | Books | Goodreads shelf RSS, or Hardcover GraphQL | Goodreads stopped issuing API keys in 2020 |
 
 **The record player** — `src/components/spotify/RecordPlayer.tsx`:
@@ -215,9 +271,23 @@ flow and print the refresh token — the fiddliest part of Spotify setup, worth 
 
 ## Phase 5 — Discoverability + polish
 
-**Status: not started.** The root `metadata` block in `layout.tsx` is the only piece in place.
-Still missing: per-route `generateMetadata`, `opengraph-image.tsx`, `sitemap.ts`, `robots.ts`,
-JSON-LD, `@vercel/analytics`, `next-themes`, the README rewrite, and GitHub Actions CI.
+**Status: done.** Per-route metadata and canonicals, dynamic OG cards (`src/app/_og/card.tsx`,
+rendering in vendored Roboto Mono so the build never depends on the network), `sitemap.ts`,
+`robots.ts`, JSON-LD `Person`, `@vercel/analytics`, `next-themes`, the README rewrite, and
+GitHub Actions CI are all in.
+
+A root-level `canonical: "/"` was briefly inherited by every route, making each page claim to be
+the home page; canonicals are now set per route.
+
+**The light theme is a real one, not a toggle over dark styling.** 71 hardcoded Tailwind shades
+across 20 files became semantic tokens (`strong`, `muted`, `subtle`, `accent`, `accent-strong`,
+`accent-dim`, `danger`) that re-point under `.light`, so no component knows the theme exists.
+
+**Contrast is now enforced, not audited once.** `npm run check:contrast` parses the tokens
+straight out of `globals.css` and fails if any drops below its floor in either theme; CI runs it.
+It caught five genuine failures, including a pre-existing one: `text-green-700` scored **3.77:1**
+on the dark surface and was in use at body size in `Work.tsx` and the blog routes — an AA
+violation that shipped in Phase 0 and survived the Phase 2 review.
 
 - `generateMetadata` per route (the current title is literally `ck16dev`); **dynamic OG cards** via
   `opengraph-image.tsx` + `ImageResponse` — itself a nice craft flex, and it fixes blank link shares.
