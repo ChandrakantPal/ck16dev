@@ -9,13 +9,13 @@ const Introduction = () => (
     <div className="w-full h-full p-6 mt-20 text-left md:p-14 lg:p-20">
       <Typewriter
         text="Hi, I am"
-        className="block mt-1 text-lg text-green-400 md:text-xl"
+        className="block mt-1 text-lg text-accent md:text-xl"
       />
       <Typewriter
         as="h1"
         text="Chandrakant Pal."
         startDelayMs={1000}
-        className="block mt-6 text-3xl font-semibold text-gray-400 md:text-4xl lg:text-6xl"
+        className="block mt-6 text-3xl font-semibold text-muted md:text-4xl lg:text-6xl"
       />
       <Typewriter
         text="I build things on the web."
@@ -23,8 +23,8 @@ const Introduction = () => (
         className="block mt-1 text-3xl font-semibold text-muted md:text-4xl lg:text-6xl"
       />
       <p className="w-full mt-8 text-lg text-muted md:text-xl">
-        I am a Web Developer based out of India.
-        <br /> Tech enthusiast, constantly learning some new tech out there.
+        Senior software engineer based in India.
+        <br /> I work end to end — interfaces, APIs, and the data underneath.
         <br /> History buff,
         <br /> Movie buff.
       </p>
