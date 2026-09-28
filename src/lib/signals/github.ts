@@ -1,3 +1,4 @@
+import { readEnv } from "./env";
 import { fetchJson } from "./http";
 import type { Signal, SignalItem, SignalProvider } from "./types";
 
@@ -6,7 +7,7 @@ import type { Signal, SignalItem, SignalProvider } from "./types";
  * 60 to 5000 requests an hour, which the shared cache makes academic — so this
  * provider is always configured.
  */
-const username = process.env.GITHUB_USERNAME ?? "ChandrakantPal";
+const username = readEnv("GITHUB_USERNAME", "ChandrakantPal");
 
 const REVALIDATE_SECONDS = 900;
 const MAX_ITEMS = 5;

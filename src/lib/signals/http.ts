@@ -1,3 +1,9 @@
+/*
+ * Some feeds refuse a request that does not identify itself — Goodreads answers
+ * 403 with no User-Agent — and a server-side fetch sends none by default.
+ */
+const USER_AGENT = "ck16.dev (+https://ck16.dev)";
+
 /**
  * Every provider fetches through here so caching and failure behave the same
  * everywhere: one shared server-side cache entry per URL, and a thrown error
@@ -30,7 +36,7 @@ const fetchOrThrow = async (
   headers: Record<string, string> = {},
 ): Promise<Response> => {
   const response = await fetch(url, {
-    headers,
+    headers: { "User-Agent": USER_AGENT, ...headers },
     next: { revalidate: revalidateSeconds },
   });
 
