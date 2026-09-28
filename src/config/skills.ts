@@ -1,22 +1,62 @@
-export interface Skill {
+export interface SkillGroup {
   title: string;
-  iconUrl: string;
-  proficiency: number;
+  items: string[];
 }
 
-export const skills: Skill[] = [
-  { title: "ReactJS", iconUrl: "/images/logos/react.png", proficiency: 8 },
-  { title: "NextJS", iconUrl: "/images/logos/next.png", proficiency: 8 },
+/*
+ * Mirrors the skills block in the resume, trimmed to what a reader will
+ * actually take in. Keep the two in sync when the resume changes.
+ */
+export const skillGroups: SkillGroup[] = [
+  { title: "languages", items: ["TypeScript", "JavaScript"] },
   {
-    title: "Typescript",
-    iconUrl: "/images/logos/typescript.png",
-    proficiency: 8,
+    title: "frontend",
+    items: [
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Radix",
+      "shadcn/ui",
+      "Framer Motion",
+      "D3",
+      "Storybook",
+    ],
   },
-  { title: "NodeJS", iconUrl: "/images/logos/node.png", proficiency: 8 },
-  { title: "GraphQL", iconUrl: "/images/logos/graphql.png", proficiency: 7 },
   {
-    title: "PostgreSQL",
-    iconUrl: "/images/logos/postgresql.png",
-    proficiency: 5,
+    title: "backend",
+    items: [
+      "Node.js",
+      "tRPC",
+      "GraphQL",
+      "PostgreSQL",
+      "Drizzle",
+      "Redis",
+      "Express",
+    ],
+  },
+  {
+    title: "tooling",
+    items: [
+      "Vercel",
+      "AWS",
+      "Docker",
+      "Turborepo",
+      "GitHub Actions",
+      "Sentry",
+      "Vitest",
+      "Figma",
+    ],
+  },
+  {
+    title: "concepts",
+    items: [
+      "SSR / SSG / PPR",
+      "Accessibility",
+      "SEO",
+      "i18n",
+      "Monorepos",
+      "Caching",
+      "Rate limiting",
+    ],
   },
 ];
