@@ -41,6 +41,16 @@
   --color-accent-dim: #18ad4f;
   --color-danger: #f87171;
 
+  /*
+   * The record crates on /music. Wood reads as wood on either theme, so the
+   * light theme leaves these alone. `crate-ink` on `crate-front` is 4.6:1, so
+   * the stamped labels pass at body size.
+   */
+  --color-crate-front: #b98050;
+  --color-crate-side: #c68d5a;
+  --color-crate-inside: #6e4322;
+  --color-crate-ink: #3a1f0c;
+
   --spacing-200: 60rem;
 
   --animate-slide: slide 0.3s;
@@ -144,6 +154,19 @@
   );
 }
 
+/* Faint vertical grain for the record crates, laid over their flat wood colour. */
+@utility wood-grain {
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgb(0 0 0 / 0.05) 0 1px,
+      transparent 1px 5px,
+      rgb(255 255 255 / 0.04) 5px 6px,
+      transparent 6px 11px
+    ),
+    linear-gradient(180deg, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.12));
+}
+
 /*
  * Light theme. next-themes stamps `class="light"` on <html>; the dark values
  * above stay the default, so the site is dark unless a visitor asks otherwise.
@@ -168,3 +191,4 @@
   --color-accent-dim: #136c34;
   --color-danger: #b91c1c;
 }
+

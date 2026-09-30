@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AlbumWall from "@/components/music/AlbumWall";
 import CoverStrip from "@/components/music/CoverStrip";
-import EraSpectrum from "@/components/music/EraSpectrum";
+import EraCrates from "@/components/music/EraCrates";
 import TopLists, {
   type ListedArtist,
   type ListedTrack,
@@ -58,10 +58,7 @@ const MusicPage = async () => {
 
       <section className="mt-16 border-t border-subtle pt-8">
         <h2 className="text-lg text-accent md:text-xl">./eras</h2>
-        <EraSpectrum
-          tracks={insights.topTracks.long_term}
-          albums={insights.albums}
-        />
+        <EraCrates albums={insights.albums} />
       </section>
 
       <section className="mt-16 border-t border-subtle pt-8">
